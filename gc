@@ -1,0 +1,29 @@
+a1 = open("FASTAFILE.whatever","r")
+d1 = {}
+tempgc = 0.0
+templabel = ""
+
+for line in a1:
+	if line.startswith(">"):
+		newk = line.strip("\n").strip(">")
+		d1[newk] = ""
+		
+	else:
+		d1[newk] += line.strip("\n")
+
+maxgc = 0.0
+maxlabel = ""
+
+for ids in d1:
+	seq = d1[ids]
+	c = seq.count("C")
+	g = seq.count("G")
+	templen = len(seq)
+	tempgc = (c+g)/templen * 100
+	print(ids,tempgc)
+	if tempgc > maxgc:
+		maxgc = tempgc
+		maxlabel = ids
+
+
+print('MAX ',maxlab,maxgc)
